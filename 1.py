@@ -90,32 +90,3 @@ loss, accuracy = model.evaluate(X_test, Y_test, verbose=0)
 print('Loss for the CNN model = %.3f' % loss)
 print('Accuracy for the CNN model = %.3f' % (accuracy * 100.0))
 
-
-# In[14]:
-
-
-#adding noice factor to the dataset 
-
-
-# In[17]:
-
-
-# define the noise factor of 0.25 
-noise_factor = 0.25
-X_train = X_train + noise_factor * np.random.normal(loc=0.0, scale=1.0, size=X_train.shape)
-X_test = X_test + noise_factor * np.random.normal(loc=0.0, scale=1.0, size=X_test.shape)
-X_train = np.clip(X_train, 0., 1.)
-X_test = np.clip(X_test, 0., 1.)
-
-
-# In[18]:
-
-
-#Training and validating the data and getting accuracy 
-
-model.fit(X_train, Y_train, epochs=20, batch_size=32, validation_data=(X_test, Y_test), verbose=1)
-loss, accuracy = model.evaluate(X_test, Y_test, verbose=0)
-
-print('Loss for the CNN model = %.3f' % loss)
-print('Accuracy for the CNN model = %.3f' % (accuracy * 100.0))
-
